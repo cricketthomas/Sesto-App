@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!--  TODO Attribute Images  -->
+<TabbedPage
+    x:Class="SestoApp.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:SestoApp.Resources"
+    xmlns:views="clr-namespace:SestoApp.Views"
+    android:TabbedPage.ToolbarPlacement="Bottom">
+    <TabbedPage.Children>
+
+        <NavigationPage
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            Title="Browse"
+            ios:NavigationPage.PrefersLargeTitles="True"
+            ios:Page.LargeTitleDisplay="Automatic">
+            <x:Arguments>
+                <views:ItemsPage />
+            </x:Arguments>
+            <!--<NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                </OnPlatform>
+
+            </NavigationPage.Icon>-->
+
+            <NavigationPage.IconImageSource>
+                <OnPlatform x:TypeArguments="ImageSource">
+                    <On Platform="iOS" Value="tab_feed.png" />
+
+                    <On Platform="Android" Value="{local:ImageResource Source=SestoApp.Assets.Images.list-circle-outline.png}" />
+                </OnPlatform>
+            </NavigationPage.IconImageSource>
+        </NavigationPage>
+
+        <NavigationPage
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            Title="Search"
+            ios:NavigationPage.PrefersLargeTitles="True"
+            ios:Page.LargeTitleDisplay="Automatic">
+
+            <x:Arguments>
+                <views:SearchPage />
+            </x:Arguments>
+            <!--<NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="search.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>-->
+
+            <NavigationPage.IconImageSource>
+                <OnPlatform x:TypeArguments="ImageSource">
+                    <On Platform="iOS" Value="search.png" />
+
+                    <On Platform="Android" Value="{local:ImageResource Source=SestoApp.Assets.Images.search-circle-outline.png}" />
+                </OnPlatform>
+            </NavigationPage.IconImageSource>
+        </NavigationPage>
+
+        <NavigationPage
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            Title="Bookmarks"
+            ios:NavigationPage.PrefersLargeTitles="True"
+            ios:Page.LargeTitleDisplay="Automatic">
+            <x:Arguments>
+                <views:BookmarksPage />
+            </x:Arguments>
+            <!--<NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="iOS" Value="save.png" />
+                </OnPlatform>
+            </NavigationPage.Icon>-->
+
+            <NavigationPage.IconImageSource>
+                <OnPlatform x:TypeArguments="ImageSource">
+                    <On Platform="iOS" Value="save.png" />
+                    <On Platform="Android" Value="{local:ImageResource Source=SestoApp.Assets.Images.bookmarks-outline.png}" />
+
+                </OnPlatform>
+            </NavigationPage.IconImageSource>
+        </NavigationPage>
+
+        <NavigationPage
+            xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+            Title="Profile"
+            ios:NavigationPage.PrefersLargeTitles="True"
+            ios:Page.LargeTitleDisplay="Automatic">
+            <x:Arguments>
+                <views:ProfilePage />
+            </x:Arguments>
+            <!--<NavigationPage.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                </OnPlatform>
+            </NavigationPage.Icon>-->
+
+            <NavigationPage.IconImageSource>
+                <OnPlatform x:TypeArguments="ImageSource">
+                    <On Platform="iOS" Value="profile.png" />
+
+                    <On Platform="Android" Value="{local:ImageResource Source=SestoApp.Assets.Images.person-outline.png}" />
+                </OnPlatform>
+            </NavigationPage.IconImageSource>
+        </NavigationPage>
+
+
+    </TabbedPage.Children>
+</TabbedPage>

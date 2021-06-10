@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="SestoApp.Views.Auth.CreateAccountPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:SestoApp.Resources"
+    xmlns:rv="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    Title="Create Account"
+    ios:NavigationPage.HideNavigationBarSeparator="False"
+    ios:Page.LargeTitleDisplay="Always"
+    NavigationPage.BackButtonTitle="Test"
+    Visual="Default">
+
+
+    <StackLayout Margin="10,80,10,0" Orientation="Vertical">
+        <Label
+            FontSize="35"
+            HorizontalOptions="Center"
+            Text="Signing up is easy!" />
+        <Image Source="{local:ImageResource Source=SestoApp.Assets.Images.undraw.access_account.png}" Style="{StaticResource LoginPageImageStyle}" />
+        <rv:MaterialFrame>
+            <StackLayout
+                Margin="20"
+                Orientation="Vertical"
+                VerticalOptions="CenterAndExpand">
+                <Entry
+                    Keyboard="{StaticResource NoCapitalizationKeyboard}"
+                    Placeholder="Email"
+                    Text="{Binding UserEmailAddress}" />
+                <Entry
+                    IsPassword="True"
+                    Keyboard="{StaticResource NoCapitalizationKeyboard}"
+                    Placeholder="Password"
+                    Text="{Binding UserPassword}" />
+                <Entry
+                    IsPassword="True"
+                    Keyboard="{StaticResource NoCapitalizationKeyboard}"
+                    Placeholder="Confirm Password"
+                    Text="{Binding ConfirmUserPassword}" />
+                <Button
+                    x:Name="SignUpButton"
+                    Clicked="SignUpButton_Clicked"
+                    Style="{StaticResource OrangeButtonStyle}"
+                    Text="Create Account" />
+
+            </StackLayout>
+
+        </rv:MaterialFrame>
+
+
+
+
+    </StackLayout>
+
+</ContentPage>
+
+

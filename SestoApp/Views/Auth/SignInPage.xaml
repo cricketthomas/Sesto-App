@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="SestoApp.Views.Auth.SignInPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:SestoApp.Resources"
+    xmlns:rv="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    Title="Sign In"
+    ios:NavigationPage.HideNavigationBarSeparator="true">
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancel" />
+    </ContentPage.ToolbarItems>-->
+    <StackLayout Margin="10,80,10,0" Orientation="Vertical">
+        <Label
+            FontSize="35"
+            HorizontalOptions="Center"
+            Text="Welcome back!" />
+        <Image Source="{local:ImageResource Source=SestoApp.Assets.Images.undraw.sign_in.png}" Style="{StaticResource LoginPageImageStyle}" />
+        <rv:MaterialFrame>
+            <StackLayout
+                Margin="20"
+                Orientation="Vertical"
+                VerticalOptions="CenterAndExpand">
+                <Entry
+                    Keyboard="{StaticResource NoCapitalizationKeyboard}"
+                    Placeholder="Email"
+                    Text="{Binding UserEmailAddress}" />
+                <Entry
+                    IsPassword="True"
+                    Keyboard="{StaticResource NoCapitalizationKeyboard}"
+                    Placeholder="Password"
+                    Text="{Binding UserPassword}" />
+                <Button
+                    x:Name="SignInButton"
+                    Clicked="SignInButton_Clicked"
+                    Style="{StaticResource BlueButtonStyle}"
+                    Text="Sign In"
+                    Visual="Material" />
+
+            </StackLayout>
+
+        </rv:MaterialFrame>
+
+        <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+
+
+
+            <!--<Label
+                FontSize="Small"
+                HorizontalOptions="Center"
+                Text="Create Account">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="NavigateToSignUp_Clicked" />
+                </Label.GestureRecognizers>
+            </Label>-->
+            <!--<BoxView
+                BackgroundColor="LightGray"
+                HeightRequest="2"
+                WidthRequest="1" />-->
+            <Label
+                x:Name="ForgotPassword"
+                FontSize="Small"
+                HorizontalOptions="Center"
+                Text="Forgot Password"
+                VerticalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ForgotPassword_Clicked" />
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+
+
+    </StackLayout>
+
+</ContentPage>

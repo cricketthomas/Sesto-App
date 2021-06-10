@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="SestoApp.Views.PlaceDetailPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:extensions="clr-namespace:SestoApp.Extensions"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:SestoApp.Resources"
+    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+    xmlns:rv="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    xmlns:vm="clr-namespace:SestoApp.ViewModels"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    Title="{Binding Title}"
+    ios:Page.LargeTitleDisplay="Automatic">
+
+
+    <ContentPage.ToolbarItems />
+
+    <!--<ContentPage.BindingContext>
+        <vm:PlaceDetailViewModel/>
+    </ContentPage.BindingContext>
+    xmlns:chips="clr-namespace:Xamarin.Forms.Chips;assembly=Xamarin.Forms.Chips"
+    -->
+
+
+
+    <ContentPage.Resources>
+        <local:InverseBoolConverter x:Key="inverter" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+
+
+
+                <Grid>
+
+                    <Image
+                        HorizontalOptions="Fill"
+                        Source="https://images.pexels.com/photos/5953526/pexels-photo-5953526.jpeg"
+                        VerticalOptions="Fill" />
+
+
+
+                </Grid>
+                <!--<ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+                                <StackLayout IsVisible="{Binding IsBusy, Converter={x:StaticResource inverter}}">-->
+                <StackLayout>
+
+                    <rv:MaterialFrame>
+                        <StackLayout>
+
+                            <Label FontSize="Medium" Text="Address:" />
+                            <Label FontSize="Small" Text="{Binding Place.FormattedAddress}" />
+                            <Label FontSize="Small" Text="{Binding Place.Type}" />
+
+                        </StackLayout>
+
+                    </rv:MaterialFrame>
+
+
+                </StackLayout>
+
+
+
+                <microcharts:ChartView
+                    x:Name="chartView"
+                    Margin="25"
+                    HeightRequest="250" />
+
+
+
+                <Button
+                    x:Name="AddCurrentActivity"
+                    Clicked="AddCurrentActivity_Clicked"
+                    Text="Add Activity Report" />
+
+
+
+
+
+                <!--TODO: show these chips
+                <chips:Chip
+                        x:Name="MitigationQueue"
+                        Padding="8,5"
+                        BackgroundColor="Purple"
+                        ClickedCommand="{Binding ClickedChipsSetCommand}"
+                        ClickedCommandParameter="{Binding Source={x:Static local:SharedResources.None}}"
+                        SelectCommand="{Binding SelectChipsSetCommand}"
+                        SelectCommandParameter="{Binding Source={x:Reference MitigationQueue}}"
+                        Text="Line/Queue" />
+                <Button
+                        x:Name="MitigationQueue1"
+                        Padding="8,5"
+                        BackgroundColor="Purple"
+                        Command="{Binding SelectChipsSetCommand}"
+                        CommandParameter="{Binding Source={x:Reference MitigationQueue}}" />
+                <chips:Chip
+
+                        ClickedCommandParameter="{Binding Source={x:Static local:SharedResources.None}}"
+                        Text="None" />
+
+
+
+
+                <chips:Chip
+                        x:Name="MitigationTicketing"
+                        Padding="8,5"
+                        BackgroundColor="MediumBlue"
+                        ClickedCommand="{Binding SelectChipsSetCommand}"
+                        ClickedCommandParameter="{chi}"
+                        OnClicked="HasCovidPrecaution_OnClicked"
+                        Text="Ticketing" />
+
+                <chips:Chip
+                        x:Name="MitigationCovid"
+                        Padding="8,5"
+                        BackgroundColor="Red"
+                        ClickedCommand="{Binding SelectChipsSetCommand}"
+                        ClickedCommandParameter="{Binding Source={x:Static local:SharedResources.CovidPrecautions}}"
+                        OnClicked="HasCovidPrecaution_OnClicked"
+                        Text="MitigationCovid" />-->
+
+            </StackLayout>
+
+
+        </ScrollView>
+
+    </ContentPage.Content>
+
+</ContentPage>

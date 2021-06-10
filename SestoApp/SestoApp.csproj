@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    </PropertyGroup>
+    <!-- When .net 6 comes out, we can upgrade to that.
+	 https://stackoverflow.com/questions/64782448/how-to-target-mobile-appxamarin-forms-project-to-net-5-0-in-vs2019-version
+	https://devblogs.microsoft.com/dotnet/announcing-net-5-0/
+	-->
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>portable</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+        <LangVersion>latestmajor</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <LangVersion>latestmajor</LangVersion>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+        <PackageReference Include="System.Text.Json" Version="5.0.2" />
+        <PackageReference Include="GoogleApi" Version="3.10.8" />
+        <PackageReference Include="Sharpnado.MaterialFrame" Version="1.1.4" />
+        <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2012" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+        <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+        <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
+        <PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="settings.json" Condition="'$(Configuration)' != 'Debug' or !Exists('local.settings.json')" />
+        <EmbeddedResource Include="local.settings.json" Link="settings.json" Condition="'$(Configuration)' == 'Debug' and Exists('local.settings.json')" />
+        <EmbeddedResource Include="Assets\Images\user_profile.png" />
+        <EmbeddedResource Include="Assets\Images\bookmark-outline.png" />
+        <EmbeddedResource Include="Assets\Images\person-outline.png" />
+        <EmbeddedResource Include="Assets\Images\id-card-outline.png" />
+        <EmbeddedResource Include="Assets\Images\search-circle-outline.png" />
+        <EmbeddedResource Include="Assets\Images\list-circle-outline.png" />
+        <EmbeddedResource Include="Assets\Images\bookmarks-outline.png" />
+        <EmbeddedResource Include="Assets\Images\cog-outline.png" />
+        <EmbeddedResource Include="Assets\Images\log-out-outline.png" />
+        <EmbeddedResource Include="Assets\Images\undraw\access_account.png" />
+        <EmbeddedResource Include="Assets\Images\undraw\sign_in.png" />
+        <EmbeddedResource Include="Assets\Images\undraw\authentication.png" />
+        <EmbeddedResource Include="Assets\Images\undraw\choice.png" />
+        <EmbeddedResource Include="Assets\Images\undraw\destination.png" />
+        <EmbeddedResource Include="Assets\Images\undraw\inspection.png" />
+        <EmbeddedResource Include="Assets\Images\undraw\navigation.png" />
+        <EmbeddedResource Include="Assets\Images\undraw\right_direction.png" />
+        <EmbeddedResource Include="Assets\Images\undraw\the_search.png" />
+        <EmbeddedResource Include="Assets\Images\undraw\web_search.png" />
+        <EmbeddedResource Include="Assets\Images\undraw\map.png" />
+        <EmbeddedResource Include="Assets\Images\checkmark.png" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Resources\" />
+        <Folder Include="Models\Enums\" />
+        <Folder Include="Interfaces\" />
+        <Folder Include="Assets\" />
+        <Folder Include="Assets\Images\" />
+        <Folder Include="Views\Settings\" />
+        <Folder Include="ViewModels\Settings\" />
+        <Folder Include="Assets\Images\undraw\" />
+        <Folder Include="Views\Auth\" />
+        <Folder Include="Views\Modals\" />
+        <Folder Include="ViewModels\Modals\" />
+        <Folder Include="Extensions\" />
+        <Folder Include="Infastructure\" />
+        <Folder Include="Infastructure\Data\" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Remove="Resources\Images\person-circle-outline.png" />
+        <None Remove="Assets\svgs\undraw_tourist_map_re_293e.svg" />
+        <None Remove="Assets\svgs\undraw_map_1r69.svg" />
+        <None Remove="Assets\svgs\undraw_Search_re_x5gq.svg" />
+        <None Remove="Assets\Images\user_profile.png" />
+        <None Remove="Assets\Images\bookmark-outline.png" />
+        <None Remove="Assets\Images\person-outline.png" />
+        <None Remove="Assets\Images\id-card-outline.png" />
+        <None Remove="Assets\Images\search-circle-outline.png" />
+        <None Remove="Assets\Images\list-circle-outline.png" />
+        <None Remove="Assets\Images\bookmarks-outline.png" />
+        <None Remove="Assets\Images\cog-outline.png" />
+        <None Remove="Assets\Images\log-out-outline.png" />
+        <None Remove="Assets\Images\undraw-search.png" />
+        <None Remove="Assets\Images\Onboarding\undraw_map.png" />
+        <None Remove="Assets\Images\Onboarding\map.png" />
+        <None Remove="Assets\Images\Onboarding\search.png" />
+        <None Remove="Assets\Images\Onboarding\touristmap.png" />
+        <None Remove="Assets\Images\undraw\access_accountpng.png" />
+        <None Remove="Assets\Images\undraw\aign_in.png" />
+        <None Remove="Assets\Images\undraw\access_account.png" />
+        <None Remove="Assets\Images\undraw\sign_in.png" />
+        <None Remove="Assets\Images\undraw\authentication.png" />
+        <None Remove="Assets\Images\undraw\choice.png" />
+        <None Remove="Assets\Images\undraw\destination.png" />
+        <None Remove="Assets\Images\undraw\inspection.png" />
+        <None Remove="Assets\Images\undraw\navigation.png" />
+        <None Remove="Assets\Images\undraw\right_direction.png" />
+        <None Remove="Assets\Images\undraw\the_search.png" />
+        <None Remove="Assets\Images\undraw\web_search.png" />
+        <None Remove="Assets\Images\undraw\map.png" />
+        <None Remove="Assets\Images\checkmark.png" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="Views\CreateAccountPage %28copy%29.xaml.cs" />
+        <Compile Remove="Views\Modals\PlaceDetailPage %28copy%29.xaml.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="LargeDevicesStyle.xaml.cs">
+        <DependentUpon>LargeDevicesStyle.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Resources\GeneralDevicesStyle.xaml.cs">
+        <DependentUpon>GeneralDevicesStyle.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Auth\CreateAccountPage.xaml.cs">
+        <DependentUpon>CreateAccountPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Auth\LoginPage.xaml.cs">
+        <DependentUpon>LoginPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+</Project>

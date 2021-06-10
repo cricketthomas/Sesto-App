@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="SestoApp.Views.Modals.ReportActivityPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:SestoApp.Resources"
+    xmlns:rv="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    xmlns:vm="clr-namespace:SestoApp.ViewModels.Modals"
+    Title="{Binding Title}"
+    ios:NavigationPage.HideNavigationBarSeparator="False"
+    ios:Page.LargeTitleDisplay="Automatic"
+    ios:Page.ModalPresentationStyle="OverFullScreen"
+    ios:Page.UseSafeArea="True">
+
+
+
+
+
+    <!--<ContentPage.BindingContext>
+        <vm:ReportActivityViewModel />
+    </ContentPage.BindingContext>-->
+
+
+    <ContentPage.Resources>
+        <local:InverseBoolConverter x:Key="inverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout
+                HorizontalOptions="CenterAndExpand"
+                Orientation="Horizontal"
+                VerticalOptions="CenterAndExpand">
+                <Label IsVisible="{Binding IsBusy}" Text="Loading" />
+                <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+            </StackLayout>
+            <StackLayout
+                Margin="0,150,0,0"
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="{Binding IsSuccess}">
+                <Image
+                    x:Name="SuccessImage"
+                    Source="{local:ImageResource Source=SestoApp.Assets.Images.checkmark.png}"
+                    Style="{StaticResource LoginPageImageStyle}" />
+                <Label HorizontalTextAlignment="Center" Text="thank you." />
+                <Label FontSize="Micro" Text="we really appreciate your activity report." />
+
+            </StackLayout>
+
+            <AbsoluteLayout>
+                <StackLayout
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="{Binding ShowForm}"
+                    VerticalOptions="CenterAndExpand">
+
+                    <StackLayout.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS" Value="20,10,20,0" />
+                            <On Platform="Android, WinPhone, Windows" Value="15,0,15,0" />
+                        </OnPlatform>
+                    </StackLayout.Margin>
+
+                    <StackLayout.Padding>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS" Value="5,25,5,0" />
+                            <On Platform="Android, WinPhone, Windows" Value="15,20,15,0" />
+                        </OnPlatform>
+                    </StackLayout.Padding>
+
+
+
+
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Title"
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding Title}" />
+                    <StackLayout IsClippedToBounds="True" Orientation="Horizontal">
+                        <Label
+                            FontAttributes="None"
+                            FontSize="Micro"
+                            HorizontalOptions="Start"
+                            Text="{Binding PlaceModel.Name, StringFormat='{0:N} |'}" />
+                        <Label
+                            FontAttributes="Italic"
+                            FontSize="Micro"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding ShortAddress, StringFormat='{0:N}'}" />
+
+                    </StackLayout>
+
+
+                    <BoxView
+                        HeightRequest="0.5"
+                        WidthRequest="100"
+                        Color="LightGray" />
+                    <StackLayout>
+
+                        <Label
+                            FontSize="Small"
+                            HorizontalTextAlignment="Start"
+                            Text="Select all that apply"
+                            TextTransform="Lowercase" />
+                        <Label
+                            FontSize="Micro"
+                            Text="Attributes should reflect current conditions of the location"
+                            TextTransform="Lowercase" />
+                        <rv:MaterialFrame>
+
+                            <Grid RowSpacing="-2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.25*" />
+                                    <ColumnDefinition Width="0.20*" />
+                                    <ColumnDefinition Width="0.35*" />
+                                    <ColumnDefinition Width="0.20*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+
+
+                                <Label
+                                    x:Name="LineLabel"
+                                    FontSize="Small"
+                                    Text="Long Lines"
+                                    TextTransform="Lowercase"
+                                    VerticalOptions="Center" />
+                                <CheckBox
+                                    x:Name="LineCheckbox"
+                                    Grid.Column="1"
+                                    IsChecked="{Binding LongLineCheck}"
+                                    VerticalOptions="Center"
+                                    Color="{AppThemeBinding Dark={StaticResource OrangeAccent},
+                                                            Light={StaticResource RedAccent}}" />
+
+                                <Label
+                                    x:Name="MyCheckboxLabel"
+                                    Grid.Column="2"
+                                    FontSize="Small"
+                                    Text="Line"
+                                    TextTransform="Lowercase"
+                                    VerticalOptions="Center" />
+                                <CheckBox
+                                    x:Name="MyCheckbox"
+                                    Grid.Column="3"
+                                    IsChecked="{Binding LineCheck}"
+                                    VerticalOptions="Center"
+                                    Color="{AppThemeBinding Dark={StaticResource OrangeAccent},
+                                                            Light={StaticResource RedAccent}}" />
+
+                                <Label
+                                    x:Name="TicketingLabel"
+                                    Grid.Row="1"
+                                    FontSize="Small"
+                                    Text="Ticketing"
+                                    TextTransform="Lowercase"
+                                    VerticalOptions="Center" />
+                                <CheckBox
+                                    x:Name="TicketingCheckbox"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    IsChecked="{Binding TicketingCheck}"
+                                    VerticalOptions="Center"
+                                    Color="{AppThemeBinding Dark={StaticResource RedAccent},
+                                                            Light={StaticResource BlueAccent}}" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    FontSize="Small"
+                                    Text="Covid Precautions"
+                                    TextTransform="Lowercase"
+                                    VerticalOptions="Center" />
+                                <CheckBox
+                                    x:Name="CovidCheckbox"
+                                    Grid.Row="1"
+                                    Grid.Column="3"
+                                    IsChecked="{Binding CovidPrecautionsCheck}"
+                                    VerticalOptions="Center"
+                                    Color="{AppThemeBinding Dark={StaticResource RedAccent},
+                                                            Light={StaticResource BlueAccent}}" />
+
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="2"
+                                    FontSize="Small"
+                                    Text="Busy"
+                                    TextTransform="Lowercase"
+                                    VerticalOptions="Center" />
+                                <CheckBox
+                                    x:Name="BusyCheckbox"
+                                    Grid.Row="2"
+                                    Grid.Column="3"
+                                    IsChecked="{Binding BusyCheck}"
+                                    VerticalOptions="Center"
+                                    Color="{AppThemeBinding Dark=White,
+                                                            Light={StaticResource OrangeAccent}}" />
+
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    FontSize="Small"
+                                    Text="Not Busy"
+                                    TextTransform="Lowercase"
+                                    VerticalOptions="Center" />
+                                <CheckBox
+                                    x:Name="NotBusyCheckbox"
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    IsChecked="{Binding NotBusyCheck}"
+                                    VerticalOptions="Center"
+                                    Color="{AppThemeBinding Dark=White,
+                                                            Light={StaticResource OrangeAccent}}" />
+
+                                <Label
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    FontSize="Small"
+                                    Text="Capacity Limits"
+                                    TextTransform="Lowercase"
+                                    VerticalOptions="Center" />
+                                <CheckBox
+                                    x:Name="CapacityLimitCheckbox"
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    IsChecked="{Binding CapacityLimitsCheck}"
+                                    VerticalOptions="Center"
+                                    Color="{AppThemeBinding Dark={StaticResource BlueAccent},
+                                                            Light=Black}" />
+
+                                <Label
+                                    Grid.Row="3"
+                                    Grid.Column="2"
+                                    FontSize="Small"
+                                    Text="Reduced Hours"
+                                    TextTransform="Lowercase"
+                                    VerticalOptions="Center" />
+                                <CheckBox
+                                    x:Name="ReducedHoursCheckbox"
+                                    Grid.Row="3"
+                                    Grid.Column="3"
+                                    IsChecked="{Binding ReducedHoursCheck}"
+                                    VerticalOptions="Center"
+                                    Color="{AppThemeBinding Dark={StaticResource BlueAccent},
+                                                            Light=Black}" />
+
+                            </Grid>
+                        </rv:MaterialFrame>
+
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            Text="How long did you need to wait?" />
+                        <BoxView
+                            HeightRequest="0.2"
+                            WidthRequest="100"
+                            Color="LightGray" />
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+
+                            </Grid.RowDefinitions>
+
+                            <Slider
+                                x:Name="WaitTime"
+                                Grid.Column="1"
+                                HorizontalOptions="CenterAndExpand"
+                                Maximum="60"
+                                MaximumTrackColor="{AppThemeBinding Dark=Gray,
+                                                                    Light=Gray}"
+                                Minimum="0"
+                                MinimumTrackColor="{AppThemeBinding Dark=White,
+                                                                    Light=Black}"
+                                ThumbColor="{AppThemeBinding Dark=White,
+                                                             Light={StaticResource DarkSecondaryColor}}"
+                                Visual="Material"
+                                WidthRequest="100"
+                                Value="{Binding WaitTime, Mode=TwoWay}" />
+
+
+                            <Label
+                                x:Name="displayLabel"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                FontSize="Small"
+                                HorizontalOptions="EndAndExpand"
+                                Text="{Binding Source={x:Reference WaitTime}, Path=Value, StringFormat='Average wait time {0:F0} (min)'}"
+                                VerticalOptions="Center" />
+
+
+                            <!--<Editor
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="3"
+                                    BackgroundColor="Red"
+                                    Placeholder="Additonal Comments" />-->
+                        </Grid>
+
+
+
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="3">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            HorizontalTextAlignment="Start"
+                            Text="How many people were there?" />
+                        <BoxView
+                            HeightRequest="0.2"
+                            WidthRequest="100"
+                            Color="LightGray" />
+                        <rv:MaterialFrame>
+
+                            <StackLayout Orientation="Horizontal">
+                                <Stepper
+                                    x:Name="HeadCount"
+                                    HorizontalOptions="StartAndExpand"
+                                    Increment="5"
+                                    Maximum="350"
+                                    Value="{Binding HeadCount}" />
+
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="{Binding Source={x:Reference HeadCount}, Path=Value, StringFormat='{0:F0} people (estimate)'}"
+                                    VerticalOptions="CenterAndExpand" />
+                            </StackLayout>
+                        </rv:MaterialFrame>
+                        <Button
+                            x:Name="SubmitActivityReport"
+                            Command="{Binding SubmitActivityButton}"
+                            CommandParameter="{Binding}"
+                            Style="{StaticResource GreenButtonStyle}"
+                            Text="Submit"
+                            Visual="Material" />
+                    </StackLayout>
+
+                </StackLayout>
+
+                <ImageButton
+                    x:Name="CloseModal"
+                    AbsoluteLayout.LayoutBounds="1,0,-1,-1"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    BackgroundColor="Transparent"
+                    Clicked="CloseModal_Clicked"
+                    HorizontalOptions="EndAndExpand"
+                    IsVisible="{Binding IsBusy, Converter={x:StaticResource inverter}}"
+                    WidthRequest="35">
+                    <ImageButton.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS" Value="0,10,10,0" />
+                            <On Platform="Android, WinPhone, Windows" Value="15,15,15,0" />
+                        </OnPlatform>
+                    </ImageButton.Margin>
+                    <ImageButton.Source>
+                        <OnPlatform
+                            x:TypeArguments="FileImageSource"
+                            Android="close.png"
+                            iOS="close.png" />
+                    </ImageButton.Source>
+                </ImageButton>
+            </AbsoluteLayout>
+
+        </Grid>
+
+
+
+
+    </ContentPage.Content>
+
+</ContentPage>

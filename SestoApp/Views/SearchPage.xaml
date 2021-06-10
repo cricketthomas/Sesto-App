@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="SestoApp.Views.SearchPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:SestoApp.Resources"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:SestoApp.Models"
+    xmlns:rv="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    xmlns:vm="clr-namespace:SestoApp.ViewModels"
+    Title="Search"
+    Visual="Material"
+    mc:Ignorable="d">
+
+
+    <ContentPage.BindingContext>
+        <vm:SearchPageViewModel />
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="BookmarksIcon"
+            Clicked="BookmarksIcon_Clicked"
+            Order="Primary"
+            Priority="0">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource"
+                    Android="bookmarks_outline.png"
+                    iOS="bookmarks.png" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem
+            x:Name="ProfileIcon"
+            Clicked="ProfileIcon_Clicked"
+            Order="Primary"
+            Priority="1">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource"
+                    Android="id_card_outline.png"
+                    iOS="id-card-outline.png" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+
+
+    <ContentPage.Resources>
+        <local:InverseBoolConverter x:Key="inverter" />
+
+        <ResourceDictionary>
+            <Style x:Key="Separator" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="1" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Color" Value="Gray" />
+                <Setter Property="Margin" Value="0, 5, 0, 5" />
+                <Setter Property="Opacity" Value="0.5" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <!--<RefreshView Command="{Binding PerformSearch}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        </RefreshView>-->
+
+        <CollectionView
+            x:Name="SearchCollectionView"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            HorizontalScrollBarVisibility="Never"
+            Scrolled="PackagesScrolled"
+            VerticalScrollBarVisibility="Never"
+
+            >
+            <!--
+                ItemsSource="{Binding SearchResults}"
+            -->
+            <CollectionView.Header>
+                <ContentView Padding="0,160,0,0">
+                    <StackLayout x:Name="SearchCollectionHeaderView" />
+                </ContentView>
+            </CollectionView.Header>
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type model:PlacesTextModel}">
+
+                    <model:PlacesTextModel
+                        Name="Chick-fil-A"
+                        FormattedAddress="13600 Baltimore Ave Ste 600, Laurel, MD 20707, United States"
+                        Slug="🍕"
+                        PlaceId="ChIJp-7PnCndt4kR80Zcb0x2nS0" />
+                    <model:PlacesTextModel
+                        Name="Taco Bell"
+                        FormattedAddress="13360 Laurel Bowie Rd, Laurel, MD 20708, United States"
+                        Slug="🌮"
+                        PlaceId="ChIJL5GPVUrdt4kRAoFhW-PNQcw" />
+                    <model:PlacesTextModel
+                        Name="Jalapeno Fresh Mexican Bistro"
+                        FormattedAddress="13600 Baltimore Ave, Laurel, MD 20707, United States"
+                        Slug="🌮"
+                        PlaceId="ChIJqT08eCndt4kRUorQzh0SghQ" />
+                    <model:PlacesTextModel
+                        Name="Arby's"
+                        FormattedAddress="10425 Baltimore Ave, Beltsville, MD 20705, United States"
+                        Slug="🍔"
+                        PlaceId="ChIJHaBMD3jEt4kRyMQxgcUxRt0" />
+                    <model:PlacesTextModel
+                        Name="Wendys"
+                        FormattedAddress="11741 Beltsville Dr, Calverton, MD 20705, United States"
+                        Slug="🍔"
+                        PlaceId="ChIJB8p5a5LEt4kRBSYmtTs5rV8" />
+                    <model:PlacesTextModel
+                        Name="Mid Atlantic Seafood"
+                        FormattedAddress="13718 Baltimore Ave, Laurel, MD 20707, United States"
+                        Slug="🐟"
+                        PlaceId="ChIJiYEv1S7dt4kRk8ozwIvCUno" />
+                    <model:PlacesTextModel
+                        Name="Remington Restaurant"
+                        FormattedAddress="11500 Baltimore Ave, Beltsville, MD 20705, United States"
+                        Slug="🥩"
+                        PlaceId="ChIJ8eFB_HDDt4kR4QrEOU9fF4o" />
+                    <model:PlacesTextModel
+                        Name="LongHorn Steakhouse"
+                        FormattedAddress="13600 Baltimore Ave, Laurel, MD 20707, United States"
+                        Slug="🥩"
+                        PlaceId="ChIJp-7PnCndt4kRoiqLhDmmoA8" />
+                    <model:PlacesTextModel
+                        Name="Taco Bell"
+                        FormattedAddress="10810 Baltimore Ave, Beltsville, MD 20705, United States"
+                        Slug="🍣"
+                        PlaceId="ChIJjVnV3YPDt4kRyi3mYWVmxX4" />
+
+                    <model:PlacesTextModel
+                        Name="Amber Spice"
+                        FormattedAddress="13524 Baltimore Ave, Laurel, MD 20707, United States"
+                        Slug="🍔"
+                        PlaceId="ChIJtyEaz-7dt4kRGlwqkGNkCls" />
+                </x:Array>
+            </CollectionView.ItemsSource>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:PlacesTextModel">
+                    <Grid>
+                        <!--  Padding="0,180,0,0"  -->
+                        <rv:MaterialFrame
+                            x:Name="SearchResultsFrame"
+                            Margin="3,3"
+                            CornerRadius="10"
+                            HasShadow="False"
+                            HeightRequest="50"
+                            IsClippedToBounds="True"
+                            MaterialTheme="Acrylic">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <!--<Image
+                                            Aspect="AspectFit"
+                                            HeightRequest="40"
+                                            HorizontalOptions="Center"
+                                            Source="{Binding PhotoUrl}"
+                                            VerticalOptions="Center"
+                                            WidthRequest="40" />-->
+                                        <Label
+                                            FontSize="35"
+                                            Text="{Binding Slug}"
+                                             HorizontalOptions="Center"
+                                            VerticalOptions="Center" />
+
+                                        <StackLayout Padding="5,0,0,0" Orientation="Vertical">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                HorizontalOptions="Start"
+                                                HorizontalTextAlignment="Center"
+                                                Text="{Binding Name}" />
+
+                                            <Label
+                                                FontAttributes="Italic"
+                                                FontSize="Micro"
+                                                HorizontalOptions="Center"
+                                                HorizontalTextAlignment="Start"
+                                                Text="{Binding FormattedAddress}"
+                                                VerticalOptions="FillAndExpand" />
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnItemSelected" />
+                                    </StackLayout.GestureRecognizers>
+
+                                </StackLayout>
+                            </Grid>
+                        </rv:MaterialFrame>
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+
+
+            <CollectionView.EmptyView>
+                <ContentView>
+                    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <rv:MaterialFrame>
+                            <StackLayout>
+                                <StackLayout IsVisible="{Binding RenderNoResultsView}">
+                                    <Label
+                                        Margin="10,25,10,10"
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalOptions="Fill"
+                                        HorizontalTextAlignment="Center"
+                                        Text="No results matched your filter." />
+                                    <Label
+                                        FontAttributes="Italic"
+                                        FontSize="12"
+                                        HorizontalOptions="Fill"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Try a broader search?" />
+                                </StackLayout>
+
+                                <StackLayout IsVisible="{Binding RenderNoResultsView, Converter={x:StaticResource inverter}}">
+                                    <Image
+                                        HorizontalOptions="CenterAndExpand"
+                                        Source="{local:ImageResource Source=SestoApp.Assets.Images.undraw.web_search.png}"
+                                        VerticalOptions="CenterAndExpand" />
+                                    <Label
+                                        Padding="3"
+                                        FontSize="Medium"
+                                        HorizontalOptions="Fill"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Begin searching for a location" />
+                                </StackLayout>
+                            </StackLayout>
+
+                        </rv:MaterialFrame>
+
+                    </StackLayout>
+
+                </ContentView>
+
+            </CollectionView.EmptyView>
+
+
+
+        </CollectionView>
+        <CollectionView IsEnabled="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+        <Frame
+            x:Name="SearchBarView"
+            Padding="3"
+            AbsoluteLayout.LayoutBounds="0.5, 0, AutoSize, AutoSize"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            BackgroundColor="{AppThemeBinding Light=White,
+                                              Dark={StaticResource MainDarkColor}}"
+            HasShadow="True">
+            <StackLayout>
+                <!--
+                    Margin="16,8,16,8"
+                -->
+                <SearchBar
+                    x:Name="searchBar"
+                    ios:SearchBar.SearchBarStyle="Minimal"
+                    HorizontalOptions="Fill"
+                    Placeholder="Search nearby places"
+                    SearchCommand="{Binding PerformSearch}"
+                    SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                    VerticalOptions="CenterAndExpand" />
+
+
+                <Grid Padding="10,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Slider
+                        x:Name="MileRadius"
+                        Grid.ColumnSpan="2"
+                        Maximum="30"
+                        MaximumTrackColor="{AppThemeBinding Dark=Gray,
+                                                            Light=Gray}"
+                        Minimum="1"
+                        MinimumTrackColor="{AppThemeBinding Dark=White,
+                                                            Light=Black}"
+                        ThumbColor="{AppThemeBinding Dark=White,
+                                                     Light={StaticResource DarkSecondaryColor}}"
+                        Visual="Material"
+                        WidthRequest="1"
+                        Value="{Binding MileRadius, Mode=TwoWay}" />
+
+
+                    <Label
+                        x:Name="displayLabel"
+                        Grid.Column="3"
+                        Grid.ColumnSpan="3"
+                        FontSize="Small"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="{Binding Source={x:Reference MileRadius}, Path=Value, StringFormat='Search Radius {0:F0} (mi)'}"
+                        VerticalOptions="CenterAndExpand" />
+
+                </Grid>
+
+                <Label
+                    Margin="2"
+                    HorizontalOptions="Fill"
+                    Text="{x:Static local:SharedResources.HelpText}"
+                    VerticalOptions="CenterAndExpand" />
+                <ActivityIndicator
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}"
+                    Scale="1"
+                    VerticalOptions="Center"
+                    Visual="Default" />
+
+            </StackLayout>
+
+
+        </Frame>
+    </AbsoluteLayout>
+
+
+
+
+</ContentPage>

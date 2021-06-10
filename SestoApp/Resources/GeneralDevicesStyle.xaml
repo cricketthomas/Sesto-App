@@ -1,0 +1,118 @@
+﻿<ResourceDictionary
+    x:Class="SestoApp.GeneralDevicesStyle"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <OnIdiom
+        x:Key="PageSpacing"
+        x:TypeArguments="x:Double"
+        Phone="20"
+        Tablet="30" />
+    <OnIdiom
+        x:Key="PagePadding"
+        x:TypeArguments="Thickness"
+        Phone="20"
+        Tablet="30" />
+
+    <Style x:Key="MainButtonStyle" TargetType="Button">
+        <Setter Property="HeightRequest">
+            <Setter.Value>
+                <OnIdiom
+                    x:TypeArguments="x:Double"
+                    Phone="40"
+                    Tablet="60" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnIdiom
+                    x:TypeArguments="x:Double"
+                    Phone="15"
+                    Tablet="24" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+    </Style>
+
+    <Style x:Key="MainEntryStyle" TargetType="Entry">
+        <Setter Property="HeightRequest">
+            <Setter.Value>
+                <OnIdiom
+                    x:TypeArguments="x:Double"
+                    Phone="40"
+                    Tablet="60" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnIdiom
+                    x:TypeArguments="x:Double"
+                    Phone="15"
+                    Tablet="24" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="TextColor" Value="{StaticResource Primary}" />
+        <Setter Property="PlaceholderColor" Value="Gray" />
+    </Style>
+
+    <Style x:Key="MainTitleStyle" TargetType="Label">
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnIdiom
+                    x:TypeArguments="x:Double"
+                    Phone="30"
+                    Tablet="24" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+    </Style>
+
+    <Style x:Key="NormalTitleStyle" TargetType="Label">
+        <Setter Property="FontSize">
+            <Setter.Value>
+                <OnIdiom
+                    x:TypeArguments="x:Double"
+                    Phone="15"
+                    Tablet="19" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+    </Style>
+
+
+    <Style x:Key="LoginPageImageStyle" TargetType="Image">
+        <Setter Property="WidthRequest">
+            <Setter.Value>
+                <OnIdiom
+                    x:TypeArguments="x:Double"
+                    Phone="200"
+                    Tablet="300" />
+            </Setter.Value>
+
+        </Setter>
+        <Setter Property="Margin" Value="0,0,0,40" />
+        <Setter Property="Aspect" Value="AspectFit" />
+    </Style>
+
+
+    <Style x:Key="ProfilePageImageStyle" TargetType="Image">
+        <Setter Property="WidthRequest">
+            <Setter.Value>
+                <OnIdiom
+                    x:TypeArguments="x:Double"
+                    Phone="155"
+                    Tablet="100" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Aspect" Value="AspectFit" />
+        <Setter Property="Margin" Value="0" />
+    </Style>
+
+
+
+</ResourceDictionary>

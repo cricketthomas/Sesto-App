@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="SestoApp.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rv="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame">
+
+
+    <Application.Resources>
+        <ResourceDictionary x:Name="dictionary">
+            <!--  Global Styles  -->
+            <Color x:Key="NavigationPrimary">#114B5F</Color>
+
+            <Color x:Key="MainLightColor">White</Color>
+            <Color x:Key="SecondaryLightColor">#f4f5f5</Color>
+            <Color x:Key="HoneyDewColor">#e1efe6</Color>
+            <Color x:Key="MintCreamColor">#F1FFFA</Color>
+
+            <Color x:Key="DarkSecondaryColor">#292818</Color>
+            <Color x:Key="MainDarkColor">#141301</Color>
+
+            <Color x:Key="LightNavigation">#e5e7e6</Color>
+            <Color x:Key="LightNavigationColor">#141301</Color>
+            <Color x:Key="LightFrameColor">#e9f1f7</Color>
+
+
+
+            <Color x:Key="Primary">#6200EE</Color>
+            <Color x:Key="Secondary">#3700B3</Color>
+            <Color x:Key="Accent">#03DAC6</Color>
+            <Color x:Key="Red">#ad2e24</Color>
+            <Color x:Key="OrangeAccent">#FF9100</Color>
+            <Color x:Key="RedAccent">#ad2e24</Color>
+            <Color x:Key="BlueAccent">#459ac4</Color>
+            <Color x:Key="DarkBlueAccent">#004777</Color>
+            <Color x:Key="GreenAccent">#256D1B</Color>
+
+
+            <Style ApplyToDerivedTypes="true" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource MainLightColor}, Dark={StaticResource MainDarkColor}}" />
+                <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource LightNavigationColor}, Dark={StaticResource SecondaryLightColor}}" />
+            </Style>
+
+            <Style ApplyToDerivedTypes="true" TargetType="Page">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SecondaryLightColor}, Dark={StaticResource MainDarkColor}}" />
+            </Style>
+
+            <Style ApplyToDerivedTypes="True" TargetType="SearchBar">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}"/>
+                <Setter Property="PlaceholderColor" Value="{AppThemeBinding Light=Default, Dark=LightGray}"/>
+            </Style>
+
+
+            <Style TargetType="rv:MaterialFrame">
+                <Setter Property="MaterialTheme" Value="Acrylic" />
+                <Setter Property="Margin" Value="5, 5, 5, 10" />
+                <Setter Property="Padding" Value="20,15" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="MaterialBlurStyle" Value="ExtraLight" />
+                <Setter Property="AcrylicGlowColor" Value="{AppThemeBinding Light={StaticResource MainLightColor}, Dark={StaticResource DarkSecondaryColor}}" />
+                <Setter Property="LightThemeBackgroundColor" Value="{AppThemeBinding Light={StaticResource MainLightColor}, Dark={StaticResource DarkSecondaryColor}}" />
+            </Style>
+
+
+
+
+            <Keyboard x:Key="NoCapitalizationKeyboard" x:FactoryMethod="Create">
+                <x:Arguments>
+                    <KeyboardFlags>None</KeyboardFlags>
+                </x:Arguments>
+            </Keyboard>
+            <Style x:Key="OrangeButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{x:StaticResource OrangeAccent}" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+
+                <Setter Property="Visual" Value="Material" />
+            </Style>
+            <Style x:Key="BlueButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#459ac4" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Visual" Value="Material" />
+            </Style>
+            <Style x:Key="PurpleButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#bd619e" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Visual" Value="Material" />
+            </Style>
+            <Style x:Key="GreenButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{x:StaticResource GreenAccent}" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource MainLightColor}, Dark=Black}" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Visual" Value="Material" />
+            </Style>
+
+            <!--<OnPlatform x:Key="HeaderFontSize" x:TypeArguments="x:String">
+                <On Platform="iOS">Header</On>
+                <On Platform="Android">Small</On>
+            </OnPlatform>
+            <OnPlatform x:Key="ImageWidthRequest" x:TypeArguments="x:Double">
+                <On Platform="iOS">50</On>
+                <On Platform="Android">50</On>
+            </OnPlatform>
+
+            <OnPlatform x:Key="ImageHeightRequest" x:TypeArguments="x:Double">
+                <On Platform="iOS">150</On>
+                <On Platform="Android">120</On>
+            </OnPlatform>-->
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

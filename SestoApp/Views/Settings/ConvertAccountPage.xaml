@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="SestoApp.Views.Settings.ConvertAccountPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:rv="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    Title="Convert Account"
+    Visual="Default">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="CancelButton_Clicked" Text="Cancel" />
+    </ContentPage.ToolbarItems>
+
+
+    <StackLayout Margin="10,80,10,0" Orientation="Vertical">
+
+        <rv:MaterialFrame>
+            <StackLayout
+                Margin="20"
+                Orientation="Vertical"
+                VerticalOptions="CenterAndExpand">
+                <Entry
+                    Keyboard="{StaticResource NoCapitalizationKeyboard}"
+                    Placeholder="Email"
+                    Text="{Binding ConvertEmailAddress}" />
+
+                <Entry
+                    IsPassword="True"
+                    Keyboard="{StaticResource NoCapitalizationKeyboard}"
+                    Placeholder="Password"
+                    Text="{Binding ConvertPassword}" />
+
+                <Button
+                    x:Name="ConvertAccount"
+                    Clicked="ConvertAccount_Clicked"
+                    CornerRadius="10"
+                    Text="Convert Account"
+                    Visual="Material" />
+
+            </StackLayout>
+
+        </rv:MaterialFrame>
+
+    </StackLayout>
+
+</ContentPage>

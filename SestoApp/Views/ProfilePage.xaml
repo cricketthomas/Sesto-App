@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="SestoApp.Views.ProfilePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:SestoApp.Resources"
+    xmlns:model="clr-namespace:SestoApp.Models"
+    xmlns:rv="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    Title="{Binding Profile.DisplayName, TargetNullValue='Profile'}"
+    Visual="Default">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="LogoutIcon"
+            Clicked="LogoutIcon_Clicked"
+            Order="Primary"
+            Priority="0">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource"
+                    Android="logout.png"
+                    iOS="logout.png" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <local:InverseBoolConverter x:Key="inverter" />
+    </ContentPage.Resources>
+
+    <StackLayout>
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+
+        <StackLayout IsVisible="{Binding IsBusy, Converter={x:StaticResource inverter}}">
+
+            <!--<Image Source="{local:ImageResource SestoApp.Assets.Images.user_profile.png}" />-->
+
+            <StackLayout Padding="40">
+                <Frame
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    IsClippedToBounds="True"
+                    Style="{StaticResource ProfilePageImageStyle}">
+                    <Image
+                        HorizontalOptions="Center"
+                        Source="https://picsum.photos/600/600"
+                        VerticalOptions="Center" />
+                </Frame>
+
+                <Label
+                    FontSize="Caption"
+                    HorizontalOptions="Center"
+                    Text="{Binding Profile.Email, TargetNullValue='', FallbackValue=''}"
+                    TextColor="DimGray" />
+            </StackLayout>
+
+
+
+            <!--<rv:MaterialFrame
+                x:Name="ProfileFrame"
+                Margin="5,5,5,1"
+                CornerRadius="10"
+                HasShadow="True"
+                HeightRequest="100"
+                IsClippedToBounds="True"
+                IsVisible="{Binding Profile.IsAnonymous, Converter={x:StaticResource inverter}}">
+                <StackLayout Padding="1,0,1,0">
+                    <Label
+                        FontSize="Small"
+                        HorizontalOptions="Center"
+                        Text="Account Information:" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label FontSize="Small" Text="Email Address:" />
+                        <Label FontSize="Small" Text="{Binding Profile.Email}" />
+                    </StackLayout>
+                </StackLayout>
+            </rv:MaterialFrame>-->
+            <StackLayout>
+                <!--<Label
+                    Padding="10,10,0,10"
+                    FontSize="Medium"
+
+                    Text="Settings" />
+                <BoxView
+                    HeightRequest="1"
+                    WidthRequest="100"
+                    Color="LightGray" />-->
+                <TableView BackgroundColor="Transparent" Intent="Settings">
+                    <TableRoot x:Name="SettingsTable">
+                        <TableSection x:Name="AccountSettings" Title="Account Options">
+                            <TextCell
+                                x:Name="UpdateUserName"
+                                Detail="update your profiles display name."
+                                Tapped="UpdateUserName_Tapped"
+                                Text="update display name" />
+                            <TextCell
+                                x:Name="ResetPassword"
+                                Detail="request a reset password email."
+                                Tapped="ResetPassword_Tapped"
+                                Text="reset password" />
+
+                            <TextCell Detail="additional information associated with this account." Text="view account details" />
+                        </TableSection>
+                        <TableSection x:Name="AnonAccountSettings" Title="Advanced Options">
+                            <TextCell
+                                Detail="Set up a username and password"
+                                Tapped="ConvertAccount_Tapped"
+                                Text="Convert From Anonymous Account" />
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+
+
+
+                <!--<StackLayout IsVisible="{Binding Profile.IsAnonymous}">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Small"
+                        Text="Converting an Anonymous Account" />
+                    <Label FontSize="Small" Text="Anonymous users cannot recover their list of favorites if they get a new device, or are logged out. To mitigate this, you can create a new account and have your favorites list linked to your new account." />
+                    <Entry Keyboard="{StaticResource NoCapitalizationKeyboard}" Placeholder="Email" />
+                    <Entry
+                        IsPassword="True"
+                        Keyboard="{StaticResource NoCapitalizationKeyboard}"
+                        Placeholder="Password" />
+                    <Button Text="Request Email Account" Visual="Material" />
+                </StackLayout>
+
+                <StackLayout IsVisible="{Binding Profile.IsAnonymous, Converter={x:StaticResource inverter}}">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Small"
+                        Text="Reset Password" />
+                    <Label FontSize="Small" Text="An email will be sent to the email associated with the user identifier." />
+                    <Button Text="Request Email Password Reset Email" Visual="Material" />
+
+                </StackLayout>-->
+
+
+            </StackLayout>
+        </StackLayout>
+
+    </StackLayout>
+    <ContentPage.Content />
+</ContentPage>

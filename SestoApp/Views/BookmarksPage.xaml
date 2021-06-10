@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="SestoApp.Views.BookmarksPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:local="clr-namespace:SestoApp.Resources"
+    xmlns:model="clr-namespace:SestoApp.Infastructure"
+    xmlns:rv="clr-namespace:Sharpnado.MaterialFrame;assembly=Sharpnado.MaterialFrame"
+    Title="Bookmarks"
+    ios:Application.EnableAccessibilityScalingForNamedFontSizes="True"
+    ios:NavigationPage.HideNavigationBarSeparator="False"
+    ios:Page.LargeTitleDisplay="Automatic"
+    ios:Page.UseSafeArea="True">
+
+
+    <!--<NavigationPage.TitleView>
+        <StackLayout
+            HeightRequest="10"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Horizontal"
+            VerticalOptions="FillAndExpand">
+            <SearchBar
+                HeightRequest="10"
+                HorizontalOptions="FillAndExpand"
+                WidthRequest="10" />
+        </StackLayout>
+    </NavigationPage.TitleView>-->
+
+
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="BookmarkOutline"
+            Clicked="BookmarkOutline_Clicked"
+            Order="Primary"
+            Priority="0">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform
+                    x:TypeArguments="ImageSource"
+                    Android="bookmark.png"
+                    iOS="bookmark.png" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>-->
+
+    <ContentPage.Resources>
+        <local:InverseBoolConverter x:Key="inverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Margin="10" Padding="0,10">
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Scale="1"
+                VerticalOptions="Center"
+                Visual="Default" />
+
+            <CollectionView
+                x:Name="BookmarksView"
+                HorizontalScrollBarVisibility="Never"
+                VerticalScrollBarVisibility="Never"
+                ItemsSource="{Binding Bookmarks}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Bookmark">
+                        <rv:MaterialFrame
+                            Padding="15"
+                            CornerRadius="10"
+                            HasShadow="False"
+                            HeightRequest="30"
+                            IsClippedToBounds="True"
+                            MaterialTheme="Acrylic">
+
+                            <StackLayout x:Name="BookmarkItem" Orientation="Vertical">
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Start"
+                                    HorizontalTextAlignment="Start"
+                                    Text="{Binding PlaceName}" />
+
+                                <Label
+                                    FontAttributes="Italic"
+                                    FontSize="Micro"
+                                    HorizontalOptions="Start"
+                                    HorizontalTextAlignment="Start"
+                                    Text="{Binding FormattedAddress}"
+                                    VerticalOptions="FillAndExpand" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="BookmarkItem_Tapped" />
+                                </StackLayout.GestureRecognizers>
+
+                            </StackLayout>
+                        </rv:MaterialFrame>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
